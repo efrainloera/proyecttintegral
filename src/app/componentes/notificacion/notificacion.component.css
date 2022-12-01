@@ -1,0 +1,17 @@
+.bg-verdeOk {
+    background-color: #43d58c;
+}
+
+.bg-rojoNok {
+    background-color: #f86868;
+}
+
+#notificacion {
+    position:fixed;
+    right:0px;
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    -mos-transition: all 2s;
+    -o-transition: all 2s;
+    transition: all 2s;
+}

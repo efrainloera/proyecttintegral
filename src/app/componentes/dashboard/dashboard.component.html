@@ -1,0 +1,31 @@
+
+<div class="grid-container">
+  <h1 class="mat-h1">Tablero</h1>
+  <mat-grid-list cols="2" rowHeight="400px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card" 
+                [ngClass]="(card.title == 'Edición/creación')?'bg-azulmedio':(card.title == 'Más pedidas')?'bg-verdeclaro':(card.title == 'Listado de películas')?'bg-azulclaro':(card.title == 'Próximos estrenos')?'bg-amarillomedio':''">
+        <mat-card-header>
+          <mat-card-title>
+            {{card.title}}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <app-edicion *ngIf="card.title == 'Edición/creación'"></app-edicion>
+          <app-lista-maspedidas *ngIf="card.title == 'Más pedidas'"></app-lista-maspedidas>
+          <app-lista-edicion *ngIf="card.title == 'Listado de películas'"></app-lista-edicion>
+          <app-lista-estrenos *ngIf="card.title == 'Próximos estrenos'"></app-lista-estrenos>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+

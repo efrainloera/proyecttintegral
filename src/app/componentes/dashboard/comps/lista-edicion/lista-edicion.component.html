@@ -1,0 +1,45 @@
+  <div class="d-flex justify-content-center align-items-center m-5" style="height: 690px;" *ngIf="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div style="height: 690px; overflow-y: auto;">
+    <table class="table table-hover mt-2 mb-3 overflow-auto" *ngIf="!loading">
+      <thead>
+        <tr class="text-center">
+          <th scope="col">Foto</th>
+          <th scope="col">Título</th>
+          <th scope="col">Género</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Alquilar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pelicula of peliculas" class="text-center align-middle" >
+          <th><img src="{{ pelicula.foto }}" alt="{{ pelicula.titulo }}" style="height: 80px;"></th>
+          <td>{{ pelicula.titulo }}</td>
+          <td>{{ pelicula.genero }}</td>
+          <td>${{ pelicula.precio }}</td>
+          <td>{{ pelicula.stock }}</td>
+          <td>
+            <button type="button" class="btn btn-primary p-1 d-flex justify-content-center align-items-center" (click)="editar(pelicula.id)" title="Editar">
+              <span class="material-icons" *ngIf="pelicula.id != idEditSeleccionado">
+              edit
+              </span>
+              <span class="material-icons" *ngIf="pelicula.id == idEditSeleccionado">
+                highlight_off
+              </span>
+            </button>
+            
+            <button type="button" class="btn btn-danger p-1 mt-1 d-flex justify-content-center align-items-center" (click)="eliminar(pelicula.id)" title="Eliminar">
+              <span class="material-icons">
+              delete
+              </span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

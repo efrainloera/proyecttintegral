@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid ms-5 me-5">
+      <a class="navbar-brand" routerLink="/home">Eframax</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <li  class="nav-item ms-1">
+        <a href="https://manage.auth0.com/dashboard/us/dev-3xrtt4rosvazjj41/users">Usuarios</a>
+      </li>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item ms-1">
+            <a class="nav-link" aria-current="page" routerLink="/home" routerLinkActive="active">Home</a>
+          </li>
+
+
+          <li class="nav-item ms-1">
+            <a class="nav-link" routerLink="/listado" routerLinkActive="active">Listado</a>
+          </li>
+          <li class="btn-group ms-1" dropdown>
+            <button id="button-basic" dropdownToggle type="button" class="btn btn-danger dropdown-toggle"
+                    aria-controls="dropdown-basic">
+              Películas <span class="caret"></span>
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                role="menu" aria-labelledby="button-basic">
+              <li role="menuitem" *ngFor="let pelicula of peliculas"><a class="dropdown-item" routerLink="/detalle/{{ pelicula.id }}" routerLinkActive="active">{{ pelicula.titulo }}</a></li>
+            </ul>
+          </li>
+         
+            <li class="nav-item dropdown ms-1" dropdown routerLinkActive='active' *ngIf="isLoggedIn">
+              <a dropdownToggle class="nav-link dropdown-toggle" 
+                role="button" 
+                data-toggle="dropdown" 
+                aria-haspopup="true" 
+                aria-expanded="false"
+              >
+                Tablero
+              </a>
+              <ul *dropdownMenu class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="tablero-adm" routerLinkActive="active" *ngIf="user == 'admin'">Mi tablero</a></li>
+                <li><a class="dropdown-item" routerLink="tablero-bas" routerLinkActive="active" *ngIf="user == 'user'">Mi tablero</a></li>
+                <li><a class="dropdown-item" routerLink="logoff">Cerrar Sesión</a></li>
+              </ul>
+            </li>
+            <li class="nav-item ms-1" *ngIf="!isLoggedIn">
+              <button class="btn btn-outline-light" (click)="login()" type="button" routerLink="/access" routerLinkActive="active">Ingresar</button>
+            </li>
+            
+            <li>
+              <button class="btn btn-outline-light" (click)="logOut()" type="button" routerLink="logoff" routerLinkActive="active">Salir</button>
+            
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

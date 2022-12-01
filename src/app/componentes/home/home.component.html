@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center align-items-center m-5" *ngIf="loading" style="height: 495px;">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<carousel class="m-3 d-flex justify-content-center" [noPause]="false" *ngIf="!loading">
+    <slide style="height: 560px; cursor: pointer; " routerLink="/detalle/{{ recomendados[0].id }}">
+        <div class="d-flex border bg-dark text-white">
+            <img src="{{ recomendados[0].foto }}" alt="{{ recomendados[0].titulo }}" style="height: 550px; display: block;">
+            <div class="d-flex flex-column justify-content-around align-items-center" style="width: 450px;">
+                <h6>Películas Recomendadas</h6>
+                <div class="d-flex justify-content-start align-items-center ms-4">
+                    <img src="../../../assets/img/stars.png" alt="Imdb" style="height: 30px;">
+                    <h3 class="ms-2 mt-1">{{ recomendados[0].imdb }}</h3>
+                </div>
+                <h1 style="text-transform: uppercase">{{ recomendados[0].titulo }}</h1>
+                <div class="p-5">
+                    <p><span class="text-muted">Sinopsis: </span><i>{{ recomendados[0].sinopsis }}</i></p>
+                </div>
+            </div>
+        </div>
+    </slide>
+    <slide style="height: 560px; cursor: pointer; " routerLink="/detalle/{{ recomendados[1].id }}">
+        <div class="d-flex border bg-dark text-white">
+            <img src="{{ recomendados[1].foto }}" alt="{{ recomendados[1].titulo }}" style="height: 550px; display: block;">
+            <div class="d-flex flex-column justify-content-around align-items-center" style="width: 450px;">
+                <h6>Películas recomendadas</h6>
+                <div class="d-flex justify-content-start align-items-center ms-4">
+                    <img src="../../../assets/img/stars.png" alt="Imdb" style="height: 30px;">
+                    <h3 class="ms-2 mt-1">{{ recomendados[1].imdb }}</h3>
+                </div>
+                <h1 style="text-transform: uppercase">{{ recomendados[1].titulo }}</h1>
+                <div class="p-5">
+                    <p><span class="text-muted">Sinopsis: </span><i>{{ recomendados[1].sinopsis }}</i></p>
+                </div>
+            </div>
+        </div>
+    </slide>
+    <slide style="height: 560px; cursor: pointer; " routerLink="/detalle/{{ recomendados[2].id }}">
+        <div class="d-flex border bg-dark text-white">
+            <img src="{{ recomendados[2].foto }}" alt="{{ recomendados[2].titulo }}" style="height: 550px; display: block;">
+            <div class="d-flex flex-column justify-content-around align-items-center" style="width: 450px;">
+                <h6>Películas recomendadas</h6>
+                <div class="d-flex justify-content-start align-items-center ms-4">
+                    <img src="../../../assets/img/stars.png" alt="Imdb" style="height: 30px;">
+                    <h3 class="ms-2 mt-1">{{ recomendados[2].imdb }}</h3>
+                </div>
+                <h1 style="text-transform: uppercase">{{ recomendados[2].titulo }}</h1>
+                <div class="p-5">
+                    <p><span class="text-muted">Sinopsis: </span><i>{{ recomendados[2].sinopsis }}</i></p>
+                </div>
+            </div>
+        </div>
+    </slide>
+</carousel>

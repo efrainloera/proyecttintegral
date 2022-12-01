@@ -1,0 +1,26 @@
+  <div class="text-center m-5" *ngIf="loading" style="height: 290px; ">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div style="height: 290px; overflow-y: auto; ">
+    <table class="table table-hover mt-2 mb-3" *ngIf="!loading">
+      <thead>
+        <tr class="text-center">
+          <th scope="col">Título</th>
+          <th scope="col">Género</th>
+          <th scope="col">Mes estreno</th>
+          <th scope="col">Imdb</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let estreno of estrenos" class="text-center align-middle" >
+          <td><b>{{ estreno.titulo }}</b></td>
+          <td>{{ estreno.genero }}</td>
+          <td>{{ estreno.fechaEstreno|date:'dd-MM-yyyy' }}</td>
+          <td><b>{{ estreno.imdb }}</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

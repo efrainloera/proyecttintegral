@@ -1,0 +1,26 @@
+  <div class="text-center m-5" style="height: 290px; " *ngIf="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div style="height: 290px; overflow-y: auto; " *ngIf="!loading">
+    <table class="table table-hover mt-2 mb-3" *ngIf="true">
+      <thead>
+        <tr class="text-center">
+          <th scope="col">Foto</th>
+          <th scope="col">Título</th>
+          <th scope="col">Cant. alq.</th>
+          <th scope="col">Ganancia($)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pedida of masPedidas"  class="text-center align-middle" >
+          <th><img src="{{ pedida.foto }}" alt="{{ pedida.titulo }}" style="height: 80px;"></th>
+          <td>{{ pedida.titulo }}</td>
+          <td><b>{{ pedida.cantidad }}</b></td>
+          <td>${{ pedida.cantidad * pedida.precio }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

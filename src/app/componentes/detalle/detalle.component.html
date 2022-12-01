@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-center align-items-center m-2" style="height: 575px;" *ngIf="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+<div class="d-flex  m-2" style="height: 575px;" *ngIf="!loading">
+    <div class="d-flex flex-column justify-content-between p-4">
+        <div>
+            <div><h3>{{ pelicula.genero }}</h3></div>
+            <div><h1 class="mb-2" style="font-size: 4rem;">{{ pelicula.titulo }}</h1></div>
+            <div class="d-flex justify-content-start">
+                <h5>{{ pelicula.year }}</h5>
+                <div class="d-flex justify-content-start align-items-center ms-4">
+                    <img class="mb-2" src="../../../assets/img/stars.png" alt="Imdb" style="height: 25px;">
+                    <h5 class="ms-1">{{ pelicula.imdb }}</h5>
+                </div>
+            </div>
+        </div>   
+        <div class="p-2"><p style="font-size: 1.5rem; ">{{ pelicula.sinopsis }}</p></div>
+        <div class="d-flex align-items-center">
+            <button type="button" class="btn btn-success p-3" style="font-size: 1.3rem;" [disabled]="pelicula.stock == 0" (click)="rentaPelicula(pelicula)">Alquilar (${{ pelicula.precio }})</button>
+            <p class="d-block mb-0 ms-4" style="font-size: 1.2rem;">Stock: <b>{{ pelicula.stock }}</b></p>
+            <!--actualizacion-->
+            
+        </div>
+    </div>
+    <div class="p-2 h-100 border">
+        <img src="{{pelicula.foto}}" alt="{{ pelicula.titulo }}" class="h-100">
+    </div>  
+</div>

@@ -1,0 +1,156 @@
+<div class="d-flex justify-content-center align-items-center" style="height: 250px;" *ngIf="activar">
+    <button class="btn btn-outline-dark" (click)="activarFormulario()">Crear un nuevo registro</button>
+</div>
+<div class="d-flex justify-content-center align-items-center m-5" style="height: 250px;" *ngIf="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+<div *ngIf="!loading && !activar">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+        <div class="row mb-2">
+            <div class="col d-flex flex-column justify-content-between">
+                <img [src]="(formulario.get('foto')?.valid)?formulario.get('foto')?.value:'../../../../../assets/img/noimage.png'" alt="" style="height: 160px; object-fit: contain;">
+                <div>
+                    <label for="inputUrl" class="form-label mb-0">URL de la imagen</label>
+                    <input type="text" 
+                           class="form-control" 
+                           id="inputUrl" 
+                           formControlName="foto"
+                           [ngClass]="formulario.get('foto')?.valid?'is-valid':(((formulario.get('foto')?.invalid)&&(formulario.get('foto')?.dirty||formulario.get('foto')?.touched))?'is-invalid':'')"
+                    />
+                    <div style="height: 22px; ">
+                        <div class="invalid-feedback d-flex justify-content-start mt-0" *ngIf="(formulario.get('foto')?.invalid)&&(formulario.get('foto')?.dirty||formulario.get('foto')?.touched)">
+                            <span *ngIf="formulario.get('foto')?.errors?.['minlength']">La URL debe contener más de 5 caracteres.</span>
+                            <span *ngIf="formulario.get('foto')?.errors?.['maxlength']">La URL no debe contener más de 200 caracteres.</span>
+                            <span *ngIf="formulario.get('foto')?.errors?.['required']">Este campo es requerido.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex flex-column justify-content-between">
+                <div class="mb-1">
+                    <label for="inputTitulo" class="form-label mb-0">Título</label>
+                    <input type="text" 
+                           class="form-control" 
+                           id="inputTitulo" 
+                           formControlName="titulo"
+                           [ngClass]="formulario.get('titulo')?.valid?'is-valid':(((formulario.get('titulo')?.invalid)&&(formulario.get('titulo')?.dirty||formulario.get('titulo')?.touched))?'is-invalid':'')"
+                    />
+                    <div style="height: 22px; ">
+                        <div class="invalid-feedback d-flex justify-content-start mt-0" *ngIf="(formulario.get('titulo')?.invalid)&&(formulario.get('titulo')?.dirty||formulario.get('titulo')?.touched)">
+                            <span *ngIf="formulario.get('titulo')?.errors?.['minlength']">El título debe contener más de 2 caracteres.</span>
+                            <span *ngIf="formulario.get('titulo')?.errors?.['maxlength']">El título no debe contener más de 50 caracteres.</span>
+                            <span *ngIf="formulario.get('titulo')?.errors?.['required']">Este campo es requerido.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-1">
+                    <label for="inputGenero" class="form-label mb-0">Género</label>
+                    <input type="text" 
+                           class="form-control" 
+                           id="inputGenero" 
+                           formControlName="genero"
+                           [ngClass]="formulario.get('genero')?.valid?'is-valid':(((formulario.get('genero')?.invalid)&&(formulario.get('genero')?.dirty||formulario.get('genero')?.touched))?'is-invalid':'')"
+                    />
+                    <div style="height: 22px; ">
+                        <div class="invalid-feedback d-flex justify-content-start mt-0" *ngIf="(formulario.get('genero')?.invalid)&&(formulario.get('genero')?.dirty||formulario.get('genero')?.touched)">
+                            <span *ngIf="formulario.get('genero')?.errors?.['minlength']">El género debe contener más de 2 caracteres.</span>
+                            <span *ngIf="formulario.get('genero')?.errors?.['maxlength']">El género no debe contener más de 50 caracteres.</span>
+                            <span *ngIf="formulario.get('genero')?.errors?.['required']">Este campo es requerido.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col row">
+                    <div class="col">
+                        <label for="inputYear" class="form-label mb-0">Año</label>
+                        <input type="number" 
+                               class="form-control" 
+                               id="inputYear" 
+                               formControlName="year"
+                               [ngClass]="formulario.get('year')?.valid?'is-valid':(((formulario.get('year')?.invalid)&&(formulario.get('year')?.dirty||formulario.get('year')?.touched))?'is-invalid':'')"
+                        />
+                        <div style="height: 22px; ">
+                            <div class="invalid-feedback d-flex justify-content-start mt-0" *ngIf="(formulario.get('year')?.invalid)&&(formulario.get('year')?.dirty||formulario.get('year')?.touched)">
+                                <span *ngIf="formulario.get('year')?.errors?.['min']">El año debe ser mayor a 1900.</span>
+                                <span *ngIf="formulario.get('year')?.errors?.['max']">El año debe ser menor a 2100.</span>
+                                <span *ngIf="formulario.get('year')?.errors?.['required']">Este campo es requerido.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="inputImdb" class="form-label mb-0">Imdb</label>
+                        <input type="number" 
+                               class="form-control" 
+                               id="inputImdb" 
+                               formControlName="imdb"
+                               [ngClass]="formulario.get('imdb')?.valid?'is-valid':(((formulario.get('imdb')?.invalid)&&(formulario.get('imdb')?.dirty||formulario.get('imdb')?.touched))?'is-invalid':'')"
+                        />
+                        <div style="height: 22px; ">
+                            <div class="invalid-feedback d-flex justify-content-start mt-0" *ngIf="(formulario.get('imdb')?.invalid)&&(formulario.get('imdb')?.dirty||formulario.get('imdb')?.touched)">
+                                <span *ngIf="formulario.get('imdb')?.errors?.['max']">El IMDB debe ser menor a 10.1.</span>
+                                <span *ngIf="formulario.get('imdb')?.errors?.['required']">Este campo es requerido.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex flex-column justify-content-between">
+                <div>
+                    <label for="inputSinopsis" class="form-label mb-0">Sinopsis</label>
+                    <textarea class="form-control" 
+                              id="inputSinopsis" 
+                              rows="4" 
+                              formControlName="sinopsis"
+                              [ngClass]="formulario.get('sinopsis')?.valid?'is-valid':(((formulario.get('sinopsis')?.invalid)&&(formulario.get('sinopsis')?.dirty||formulario.get('sinopsis')?.touched))?'is-invalid':'')"
+                    ></textarea>
+                    <div style="height: 22px; ">
+                        <div class="invalid-feedback d-flex justify-content-start mt-0" *ngIf="(formulario.get('sinopsis')?.invalid)&&(formulario.get('sinopsis')?.dirty||formulario.get('sinopsis')?.touched)">
+                            <span *ngIf="formulario.get('sinopsis')?.errors?.['minlength']">La sinopsis no debe ser menor a 2 caracteres.</span>
+                            <span *ngIf="formulario.get('sinopsis')?.errors?.['maxlength']">La sinopsis no debe ser mayor a 500 caracteres.</span>
+                            <span *ngIf="formulario.get('sinopsis')?.errors?.['required']">Este campo es requerido.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col row">
+                    <div class="col d-flex flex-column justify-content-end">
+                        <label for="inputStock" class="form-label mb-0">Stock</label>
+                        <input type="number" 
+                               class="form-control" 
+                               id="inputStock" 
+                               formControlName="stock"
+                               [ngClass]="formulario.get('stock')?.valid?'is-valid':(((formulario.get('stock')?.invalid)&&(formulario.get('stock')?.dirty||formulario.get('stock')?.touched))?'is-invalid':'')"
+                        />
+                        <div style="height: 22px; ">
+                            <div class="invalid-feedback d-flex justify-content-start mt-0" *ngIf="(formulario.get('stock')?.invalid)&&(formulario.get('stock')?.dirty||formulario.get('stock')?.touched)">
+                                <span *ngIf="formulario.get('stock')?.errors?.['max']">El stock no debe superar las 100000 unidades.</span>
+                                <span *ngIf="formulario.get('stock')?.errors?.['required']">Este campo es requerido.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex flex-column justify-content-end">
+                        <label for="inputPrecio" class="form-label mb-0">Precio</label>
+                        <input type="number" 
+                               class="form-control" 
+                               id="inputPrecio" 
+                               formControlName="precio"
+                               [ngClass]="formulario.get('precio')?.valid?'is-valid':(((formulario.get('precio')?.invalid)&&(formulario.get('precio')?.dirty||formulario.get('precio')?.touched))?'is-invalid':'')"
+                        />
+                        <div style="height: 22px; ">
+                            <div class="invalid-feedback d-flex justify-content-start mt-0" *ngIf="(formulario.get('precio')?.invalid)&&(formulario.get('precio')?.dirty||formulario.get('precio')?.touched)">
+                                <span *ngIf="formulario.get('precio')?.errors?.['max']">El precio no debe ser mayor a $1000000.</span>
+                                <span *ngIf="formulario.get('precio')?.errors?.['required']">Este campo es requerido.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" formControlName="id">
+        <input type="hidden" formControlName="cantidad">
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-danger" type="button" (click)="cerrarFormulario()">Cancelar</button>
+            <button class="btn btn-success ms-2" type="submit" [disabled]="formulario.invalid">Aceptar</button>
+        </div>
+    </form>
+</div>
